@@ -1,0 +1,61 @@
+<div class="study-body">
+  <div class="study-part">
+    input number型 输入小数时tooltip显示问题<input type="number" [(ngModel)]="intTest" (keyup)="showInt()"/>{{intTest}}
+    <br>
+    解决方法一(title)：<input type="number" [(ngModel)]="intTest" (change)="showInt()" title={{tooltipMsg}}/>
+    <br>
+    解决方法二(alt)：<input type="number" [(ngModel)]="intTest" (change)="showInt()" alt=""/>
+  </div>
+  <div class="study-part down-area" #downBody>
+    <label for="dt2"><input id="dt2" type="radio" name="dowm-type" [(ngModel)]="fileType" value="2"
+                            (change)="getFileNameAndExtension()"/>zip</label>
+    <label for="dt3"><input id="dt3" type="radio" name="dowm-type" [(ngModel)]="fileType"
+                            value="3" (change)="getFileNameAndExtension()"/>file</label>==={{fileType}}===<br>
+    <label>download file name:<input type="text" [(ngModel)]="downloadName">{{extensionInfo}}</label>
+    <table>
+      <tr *ngFor="let f of files; let i = index; let end = last">
+        <td>
+          <div *ngIf="i==0">下载</div>
+        </td>
+        <td>
+          <label>
+            <span>参照...</span>
+            <input type="file" (change)="changeFile($event,i)" style="display: none"/>
+          </label>
+          {{f.fileName}}
+        </td>
+        <td>
+          <button (click)="addRow()" *ngIf="end">+</button>
+        </td>
+        <td>
+          <button (click)="delRow(i)" *ngIf="i != 0">-</button>
+        </td>
+      </tr>
+    </table>
+    <button (click)="doDownload()">download</button>
+  </div>
+  <div class="study-part">
+    日期转换成utc:<input type="datetime-local" [(ngModel)]="timeInput"/>
+    <br><input type="text" [(ngModel)]="timeInput"/><br>
+    使用管道流转化按格式转化时间：
+    <label>{{timeInput|dateLocaleTimezone:'yyyyMMddHHmmss'}}</label>
+    <div [title]="getMillSecond(timeInput|dateLocaleTimezone)" #millSec>转化成毫秒格式：{{millSec.title}}</div>
+    <div [title]="getUtc(getMillSecond(timeInput|dateLocaleTimezone:'yyyyMMddHHmmss'))" #utcDiv>转化UTC时间 by
+      毫秒：{{utcDiv.title}}</div>
+    <div [title]="getUtc(timeInput)" #utcDiv>转化UTC时间 by 时间(T)：{{utcDiv.title}}</div>
+    <button (click)="formatDate()">format</button>
+    {{timeFormat}}<br>
+    <button (click)="timeChange()">transf time by substring</button>
+    ===>{{timeUtc}}
+  </div>
+  <div class="study-part">
+    隐藏组件 保留位置(限制显示长度):
+    <input class="limit-width" #displayInput value="总共有1234个字符，超出长度不显示" title="{{displayInput.value}}" [ngStyle]="{'visibility':hiddenFlg ? 'visible':'hidden'}"/>
+    <button (click)="hidden()">hidden</button>
+    <br>
+    隐藏组件 不保留位置:
+    <div id="div_1">1</div>
+    <div>2</div>
+    <button (click)="removeDiv()">remove 1</button>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<p>news works!</p>
+<h4>get传值</h4>
+<ul>
+  <li *ngFor="let new of list">
+    <!--<a href="/newscontent?id=123">xxx</a>-->
+    <a [routerLink]="['/newscontent']" [queryParams]="{info:new.name}">{{new.name}}</a>
+  </li>
+</ul>
+<h4>动态路由传值</h4>
+<ul>
+  <li *ngFor="let new of list">
+    <!--<a href="/newscontent?id=123">xxx</a>-->
+    <a [routerLink]="['/newscontent',new.name]">{{new.name}}</a>
+  </li>
+</ul>

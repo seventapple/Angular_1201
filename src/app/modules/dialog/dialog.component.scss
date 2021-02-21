@@ -1,0 +1,51 @@
+.dialog-header {
+  font-size: 16px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #CCC;
+  height: 18px;
+  overflow: hidden;
+  padding: 15px 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 235px;
+}
+
+.dialog-body {
+  position: relative;
+  overflow: auto;
+  padding: 20px;
+  min-width: 235px;
+  background:white;
+}
+
+.dialog-footer {
+  background: #f5f5f5;
+  border-top: 1px solid #CCC;
+  height: 37px;
+  padding: 11px 20px 0px 20px;
+  text-align: right;
+  min-width: 235px;
+
+  & button {
+    margin-left: 10px;
+  }
+}
+
+.dialog-button {
+  min-width: 90px;
+  height: 26px;
+  text-align: center;
+  color: #fff;
+}
+
+.dialog-button.dialog-gray {
+  color: #333;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+}
+
+.dialog-gray:hover {
+  background: -webkit-linear-gradient(to bottom, #fff, #ccc);
+  background: -moz-linear-gradient(to bottom, #fff, #ccc);
+  background: linear-gradient(to bottom, #fff, #ccc);
+}

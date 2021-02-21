@@ -1,0 +1,8 @@
+<base-dialog></base-dialog>
+<div class="content">
+  <dialog-header [dialogTitle]="title"></dialog-header>
+  <dialog-body>
+    <div class="message-style" [translate]="message" [translateParams]="msgParams"></div>
+  </dialog-body>
+  <dialog-footer [hideExec]="hideExec" [cancelName]="cancelName" (execute)="dialogRef.close(true)"></dialog-footer>
+</div>

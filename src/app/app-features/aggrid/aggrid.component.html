@@ -1,0 +1,20 @@
+<ag-grid-angular
+  style="width: 810px; height: 260px;"
+  class="ag-theme-balham"
+  [gridOptions]="docOption"
+  [rowData]="rowData"
+  [columnDefs]="columnDefs">
+</ag-grid-angular>
+================================搜索====================================
+<br/><input type="text" [(ngModel)]="searchWrd" (keyup)="search()"/>
+<button>switch date</button>
+<ag-grid-angular
+  style="width: 810px; height: 260px;"
+  class="ag-theme-balham"
+  [gridOptions]="seaOption"
+  [rowData]="seaData"
+  [columnDefs]="seaColumn"
+  (rowClicked)="onRowClicked($event)"
+  (cellClicked)="onCellClicekd($event)"
+  (selectionChanged)="onSelectionChanged($event)">
+</ag-grid-angular>
