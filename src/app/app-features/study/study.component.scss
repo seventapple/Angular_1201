@@ -1,0 +1,18 @@
+.down-area{
+  height: 120px;
+  overflow-y: auto;
+}
+.study-body{
+  height: 800px;
+  width: 600px;
+}
+.study-part{
+  border: 5px solid cadetblue;
+}
+/*限制文本显示长度*/
+.limit-width{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+  //max-width: 100px;
+}

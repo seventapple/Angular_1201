@@ -1,0 +1,25 @@
+<div style="width: 360px;height: 220px">
+  
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let doc of docsInfo;let i= index" [expanded]="i===0" (closed)="afterClose()" (opened)="afterOpen(i)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{doc.name}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table>
+        <tr>
+          <th>属性</th>
+          <th>值</th>
+        </tr>
+        <tr *ngFor="let cus of doc.cusInfo">
+          <td>{{cus.col}}</td>
+          <td *ngIf="!cus.edit">{{cus.value}}</td>
+          <td *ngIf="cus.edit"><input type="text" [(ngModel)]="cus.value"/></td>
+        </tr>
+      </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <button (click)="saveCus()" [disabled]="!openFlg">属性保存</button>
+</div>
+{{openFlg}}

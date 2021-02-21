@@ -1,0 +1,16 @@
+.message-style {
+  min-width: 340px;
+  word-wrap: break-word;
+  white-space: pre-line;
+}
+
+.content {
+  position: fixed;
+  z-index: 1300;
+  width: 40%;
+  height: calc(70vh);
+  height: -webkit-calc(70vh);
+  height: -moz-calc(70vh);
+  left: calc(40vh);
+  top: calc(40vh);
+}

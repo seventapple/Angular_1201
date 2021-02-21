@@ -1,0 +1,20 @@
+{
+  "defaultLanguage": "en",
+  "displayLanguages": [
+    {
+      "code": "ja-JP",
+      "abridge": "ja",
+      "name": "displayLang.label.jaJp"
+    },
+    {
+      "code": "en",
+      "abridge": "en",
+      "name": "displayLang.label.en"
+    },
+    {
+      "code": "zh-CN",
+      "abridge": "zh",
+      "name": "displayLang.label.zhCn"
+    }
+  ]
+}

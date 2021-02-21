@@ -1,0 +1,16 @@
+{
+  "displayLang": {
+    "label": {
+      "jaJp": "日本語",
+      "en": "英語",
+      "zhCn": "中国語"
+    }
+  },
+  "COMMON": {
+    "LABEL": {
+      "LANGUAGE_JA": "日本語",
+      "LANGUAGE_EN": "英語",
+      "LANGUAGE_ZH": "中国語"
+    }
+  }
+}
