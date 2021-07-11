@@ -1,5 +1,5 @@
-<div style="width: 360px;height: 220px">
-  
+<div style="width: 360px;height: 360px">
+
   <mat-accordion>
     <mat-expansion-panel *ngFor="let doc of docsInfo;let i= index" [expanded]="i===0" (closed)="afterClose()" (opened)="afterOpen(i)">
       <mat-expansion-panel-header>
@@ -23,3 +23,17 @@
   <button (click)="saveCus()" [disabled]="!openFlg">属性保存</button>
 </div>
 {{openFlg}}
+<mat-divider></mat-divider>
+<div>
+  <!--入力组件,根据字符匹配选项,不合规则的,恢复空-->
+  <form class="example-form">
+    <input type="text" [placeholder]="customPlaceholder" [formControl]="control"
+           [matAutocomplete]="auto" (blur)="inputCheck()" [(ngModel)]="formValue"/>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName">
+      <mat-option *ngFor="let list of filteredCondition | async" [value]="list">
+        {{list.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </form>
+  <button (click)="show()">show</button>
+</div>

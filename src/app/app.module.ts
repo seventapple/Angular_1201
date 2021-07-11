@@ -7,7 +7,7 @@ import {AppComponent} from './app.component';
 import {HomeComponent} from './app-features/home/home.component';
 import {NewsComponent} from './app-features/news/news.component';
 import {AggridComponent} from './app-features/aggrid/aggrid.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AgGridModule} from 'ag-grid-angular';
 import {NewsContentComponent} from './app-features/news/news-content/news-content.component';
 import {ProductComponent} from './app-features/product/product.component';
@@ -27,6 +27,8 @@ import {DialogService} from './modules/dialog/dialog.service';
 import {DialogModule} from './modules/dialog/dialog.module';
 import { DateLocalePipe } from './pipes/date-locale.pipe';
 import { DateLocaleTimezonePipe } from './pipes/date-locale-timezone.pipe';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -62,7 +64,11 @@ import { DateLocaleTimezonePipe } from './pipes/date-locale-timezone.pipe';
       }
     ),
     //Dialog
-    DialogModule
+    DialogModule,
+    MatDividerModule,
+    ReactiveFormsModule,
+    //input-select
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
