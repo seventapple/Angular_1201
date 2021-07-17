@@ -1,0 +1,15 @@
+{
+  "/service": {
+    "targer": "http://localhost:8080/waproject",
+    "changeOrigin": true,
+    "secure": false
+  },
+  "/wa": {
+    "target": "http://127.0.0.1:4200",
+    "changeOrigin": true,
+    "secure": false,
+    "pathRewrite": {
+      "^/wa": ""
+    }
+  }
+}
