@@ -1,3 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
+$sprite: url(./assets/img/icon.jpg);
+$sprite-size: 800px 2000px;
+#btn-flash {
+  width: 35px;
+  height: 35px;
+  outline: none;
+}
+
+#btn-flash {
+  background: $sprite -134px -107px/$sprite-size;
+}
+
