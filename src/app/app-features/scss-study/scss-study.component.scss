@@ -1,0 +1,190 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.li-block {
+  float: left;
+}
+
+.a-block {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: yellow;
+  margin: 5px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 30px;
+}
+
+.li-inline-block {
+  text-decoration: none;
+  display: inline-block;
+  border: thin solid red;
+}
+
+#header, #footer {
+  height: 50px;
+  width: 800px;
+  margin: 0 auto;
+  background: #ccc;
+  text-align: center;
+  line-height: 50px;
+}
+
+#content {
+  width: 800px;
+  height: 500px;
+  margin: 0 auto;
+  background: #aaa;
+}
+
+//解决inline元素产生的空白符问题
+#left, #right {
+  display: inline-block;
+  width: 200px;
+  height: 500px;
+  background: #fadaac;
+  font-size: 30px;
+}
+
+#center {
+  display: inline-block;
+  width: 400px;
+  height: 500px;
+  background: #dadada;
+  font-size: 30px;
+}
+
+//这里一定要重新设置font-size。
+
+
+#parent {
+  display: inline-block;
+  background: #cadafa;
+  width: 400px;
+  height: 300px;
+}
+
+#first_son {
+  display: inherit;
+  background: #eaedac;
+  width: 200px;
+  height: 100px;
+}
+
+#second_son {
+  display: inherit;
+  background: #da5dd8;
+  width: 200px;
+  height: 100px;
+}
+
+.margin-flow-father {
+  width: 500px;
+  height: 500px;
+  background: red;
+  padding: 100px;
+}
+
+.margin-flow-son1 {
+  width: 100px;
+  height: 100px;
+  background: green;
+  margin-left: 100px;
+  display: inline-block;
+}
+
+.margin-flow-son2 {
+  width: 100px;
+  height: 100px;
+  background: green;
+  float: right;
+}
+
+.margin-line-father {
+  width: 500px;
+  height: 500px;
+  background: red;
+}
+
+.margin-line-son {
+  width: 100px;
+  height: 100px;
+  background: green;
+  margin-top: 100px;
+}
+
+.flow-first {
+  float: left;
+  width: 200px;
+  height: 200px;
+  background: green;
+}
+
+.flow-second {
+  float: left;
+  width: 200px;
+  height: 200px;
+  background: red;
+  margin-left: 20%;
+}
+
+.first {
+  width: 200px;
+  height: 200px;
+  background: green;
+}
+
+.second {
+  width: 200px;
+  height: 200px;
+  background: red;
+  margin-top: 10%;
+}
+
+.father {
+  width: 500px;
+  height: 300px;
+  background: red;
+  overflow: hidden;
+}
+
+.son {
+  width: 100px;
+  height: 100px;
+  background: green;
+  margin-top: 20%;
+  margin-left: 20%;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: green;
+}
+
+.gray {
+  background-color: gray;
+}
+
+.black {
+  background-color: black;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.size-mid {
+  height: 30px;
+  width: 30px;
+}

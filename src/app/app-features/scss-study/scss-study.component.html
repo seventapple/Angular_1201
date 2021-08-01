@@ -1,0 +1,110 @@
+<p>===display:none===</p>
+<div [ngStyle]="{'display':'none'}">test display none1</div>
+<div style="display:none">test display none1</div>
+<p>===display:block===</p>
+<!--将行内元素设置为块级元素，进而设置它的宽高和上下左右的padding和margin-->
+<ul>
+  <li class="li-block"><a href="scss" class="a-block">1</a></li>
+  <li class="li-block"><a href="scss" class="a-block">2</a></li>
+  <li class="li-block"><a href="scss" class="a-block">3</a></li>
+</ul><br><br>
+<p>===display:inline===</p>
+<!--将一个块级元素转换成行内元素，那么这个块级元素将不能再设置宽和高以及上下方向的margin和padding-->
+<div class="red size-mid" style="display: inline">1</div>
+<div class="blue size-mid" style="display: inline">2</div>
+<p>===display:inline-block===</p>
+<ul>
+  <li class="li-inline-block"><a href="scss">1</a></li>
+  <li class="li-inline-block"><a href="scss">2</a></li>
+  <li class="li-inline-block"><a href="scss">3</a></li>
+</ul><br><br>
+<div id="header">我是header</div>
+<div id="content">
+  <div id="left">我是left</div>
+  <div id="center">我是center</div>
+  <div id="right">我是right</div>
+</div>
+<div id="footer">我是footer</div>
+<div>
+  <div class="red size-mid" style="display: inline-block"></div>
+  <div class="blue size-mid" style="display: inline-block"></div>
+</div>
+<div>
+  <div class="red size-mid" style="display: inline-block"></div>
+  <div class="green size-mid" style="display: inline-block"></div>
+</div>
+<p>===display:inherit===</p>
+<!--规定应该从父元素继承 display 属性的值-->
+<div id="parent">
+  <div id="first_margin-line-son"></div>
+  <div id="second_margin-line-son"></div>
+</div>
+<p>===margin:水平方向===</p>
+<div class="red size-mid" style="display: inline-block;margin-right: 15px"></div>
+<div class="green size-mid" style="display: inline-block;margin-left: 15px"></div>
+<p>===margin:竖直方向===</p>
+<!--两个竖直方向的盒子相遇时，其竖直方向的距离等于上方盒子的下外边距和下方盒子的上外边距中较大的一个-->
+<div class="red size-mid" style="display: block;margin-bottom: 15px"></div>
+<div class="green size-mid" style="display: block;margin-top: 15px"></div>
+<!--假设有一个元素同时设置了margin-top和margin-bottom，但是内容为空，那么这两个margin值也会叠加，值为两者最大的一个-->
+<div style="margin-bottom: 30px;margin-top: 15px"></div>
+<div class="blue size-mid" style="display: block"></div>
+<p>===margin:父元素和子元素之间(水平方向)===</p>
+<div class="margin-flow-margin-line-father">
+  <!--因此这就说明了在子元素中设置margin-left，其值实际上是子元素的左边框距离父元素左padding内侧的距离-->
+  <div class="margin-flow-margin-line-son1">宽度为100px，margin-left为100px。</div>
+  <div class="margin-flow-margin-line-son2">宽度为100px，无margin。</div>
+</div>
+<p>===margin:父元素和子元素之间(竖直方向bug:父与子上方重合)===</p>
+<!--实际上这是因为当父元素没有设置padding值以及border值时，出现了一个bug--父元素的上方与子元素的上方完全重合在了一起，无法分开。所以才会导致上述这种父元素和子元素同时向下的情况。-->
+<div class="margin-line-father">
+  <div class="margin-line-son">高度为100px，margin-top为100px。</div>
+</div>
+<p>解决方法一：给父元素添加padding-top值(缺点就是增加了1px的误差)</p>
+<div class="margin-line-father" style="padding-top: 1px">
+  <div class="margin-line-son">高度为100px，margin-top为100px。</div>
+</div>
+<p>解决方法二：给父元素添加border值(缺点同一)</p>
+<div class="margin-line-father" style="border-top:1px solid transparent;">
+  <div class="margin-line-son">高度为100px，margin-top为100px。</div>
+</div>
+<!--上述方法三、四、五实际上都是去除子元素margin穿透父容器的方法，可以归类为bfc法，本质相同-->
+<p>解决方法三：给父元素添加属性overflow:hidden(完美!!!!!!)</p>
+<div class="margin-line-father" style="overflow:hidden">
+  <div class="margin-line-son">高度为100px，margin-top为100px。</div>
+</div>
+<p>解决方法四：给父元素或者子元素声明浮动float(缺点:float有时是不必要的)</p>
+<div class="margin-line-father">
+  <div class="margin-line-son" style="float:left">高度为100px，margin-top为100px。</div>
+</div>
+<p>解决方法五：使父元素或子元素声明为绝对定位：position:absolute(缺点:position有时是不必要的)</p>
+<div class="margin-line-father">
+  <div class="margin-line-son" style="position:absolute">高度为100px，margin-top为100px。</div>
+</div>
+<p>解决方法六：给父元素添加属性 overflow:auto; positon:relative</p>
+<div class="margin-line-father" style="overflow:auto; positon:relative">
+  <div class="margin-line-son">高度为100px，margin-top为100px。</div>
+</div>
+<p>margin值的单位为%:同级元素水平</p>
+<div class="flow-first">宽为200，无margin</div>
+<div class="flow-second">宽为200,margin-left为20%;</div>
+<p style="clear: both">margin值的单位为%:同级元素竖直</p>
+<!--统计元素之间在竖直方向上使用margin，当值的单位为%时，它是相对于父元素的宽度。-->
+<div class="first">高为200，无margin</div>
+<div class="second">高为200,margin-top为20%;</div>
+<p>margin值的单位为%:父子元素</p>
+<div class="father">
+  <!--子元素的margin-top值最终同样是相对与父元素的宽度而非高度-->
+  <div class="son"></div>
+</div>
+<p>float</p>
+<!--由于对div2设置浮动，因此它不再属于标准流，div3自动上移顶替div2的位置-->
+<!--div1、div3、div4依次排列，成为一个新的流。又因为浮动是漂浮在标准流之上的，因此div2挡住了一部分div3-->
+<div class="red size-mid">div1</div>
+<div class="blue size-mid" style="float: left;">div2</div>
+<div class="yellow size-mid" style="width: 50px">div3</div>
+<div class="gray size-mid">div4</div>
+<p>float:clear</p>
+<!--对于CSS的清除浮动(clear)，一定要牢记：这个规则只能影响使用清除的元素本身，不能影响其他元素-->
+<div class="red size-mid" style="float: left;">div1</div>
+<div class="blue size-mid" style="float: left;clear: left">div2</div>

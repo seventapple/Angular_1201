@@ -8,6 +8,7 @@ import {ProductComponent} from './app-features/product/product.component';
 import {ProductContentComponent} from './app-features/product/product-content/product-content.component';
 import {StudyComponent} from './app-features/study/study.component';
 import {MaterialComponent} from './app-features/material/material.component';
+import { ScssStudyComponent } from './app-features/scss-study/scss-study.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -28,6 +29,8 @@ const routes: Routes = [
   {path:'material',component:MaterialComponent},
   //学习工作问题汇总
   {path: 'study', component: StudyComponent},
+  //样式学习
+  {path: 'scss', component: ScssStudyComponent},
   //默认
   {path: '**', redirectTo: 'home'}
 ];

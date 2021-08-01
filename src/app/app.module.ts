@@ -29,6 +29,8 @@ import { DateLocalePipe } from './pipes/date-locale.pipe';
 import { DateLocaleTimezonePipe } from './pipes/date-locale-timezone.pipe';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ScssStudyComponent } from './app-features/scss-study/scss-study.component';
 
 
 @NgModule({
@@ -44,32 +46,34 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MaterialComponent,
     DateLocalePipe,
     DateLocaleTimezonePipe,
+    ScssStudyComponent,
   ],
-  imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    AgGridModule.withComponents([]),
-    MatExpansionModule,
-    HttpClientModule,
-    //i18n
-    TranslateModule.forRoot(
-      {
-        loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-        }
-      }
-    ),
-    //Dialog
-    DialogModule,
-    MatDividerModule,
-    ReactiveFormsModule,
-    //input-select
-    MatAutocompleteModule
-  ],
+    imports: [
+        BrowserAnimationsModule,
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        AgGridModule.withComponents([]),
+        MatExpansionModule,
+        HttpClientModule,
+        //i18n
+        TranslateModule.forRoot(
+            {
+                loader: {
+                    provide: TranslateLoader,
+                    useFactory: HttpLoaderFactory,
+                    deps: [HttpClient]
+                }
+            }
+        ),
+        //Dialog
+        DialogModule,
+        MatDividerModule,
+        ReactiveFormsModule,
+        //input-select
+        MatAutocompleteModule,
+        ScrollingModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
