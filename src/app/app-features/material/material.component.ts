@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-material',
@@ -11,7 +12,8 @@ import { map, startWith } from 'rxjs/operators';
 export class MaterialComponent implements OnInit {
 
   docsInfo: any[] = [
-    {name: 'doc1',
+    {
+      name: 'doc1',
       cusInfo: [{col: 'filename', value: 'anna.txt', edit: true}, {col: 'size', value: 12, edit: true}, {
         col: 'col1',
         value: 111,
@@ -35,6 +37,11 @@ export class MaterialComponent implements OnInit {
   customPlaceholder: string = 'input ... ';
   //选择栏高度
   optionHeight;
+  //入力框的对象
+  @ViewChild('ipt') iptEr: ElementRef;
+  //MatAutoComplete 组件 关闭下拉框
+  @ViewChild('ipt', {read: MatAutocompleteTrigger}) autoTrigger: MatAutocompleteTrigger;
+  closeAble: boolean = false;
 
   constructor() {
   }
@@ -107,8 +114,23 @@ export class MaterialComponent implements OnInit {
     }
   }
 
+  /**
+   *1.显示下拉菜单选择内容 2.反应当前输入框的绝对位置
+   */
   show() {
     console.error(this.formValue);
+    console.error('input locale:');
+    const iptLocale = this.iptEr.nativeElement.getBoundingClientRect();
+    console.error('x:' + iptLocale.x);
+    console.error('y:' + iptLocale.y);
+    this.closeAble = !this.closeAble;
+  }
+
+  /**
+   * 主动关闭下拉框Autocomplete
+   */
+  closePanel() {
+    this.autoTrigger.closePanel();
   }
 
   // 按键触发事件,backspace/delete清空入力栏

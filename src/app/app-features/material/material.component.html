@@ -25,19 +25,21 @@
 </div>
 {{openFlg}}
 <mat-divider></mat-divider>
-<div>
-  <!--入力组件,根据字符匹配选项,不合规则的,恢复空-->
-  <form class="example-form">
-    <input type="text" [placeholder]="customPlaceholder" [formControl]="control"
-           [matAutocomplete]="auto" (blur)="inputCheck()" [(ngModel)]="formValue" (keyup)="delInput($event)"/>
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName">
-      <!--每次缓存5个选项,减少因数量导致显示迟滞-->
-      <cdk-virtual-scroll-viewport [itemSize]="5" [ngStyle]="{'height':optionHeight+'px'}">
-        <mat-option *ngFor="let list of filteredCondition | async" [value]="list">
-          {{list.name}}
-        </mat-option>
-      </cdk-virtual-scroll-viewport>
-    </mat-autocomplete>
-  </form>
-</div>
-<button (click)="show()" id="btn-flash"></button>
+<!--入力组件,根据字符匹配选项,不合规则的,恢复空-->
+<form class="example-form">
+  <input type="text" [placeholder]="customPlaceholder" [formControl]="control"
+         [matAutocomplete]="auto" (blur)="inputCheck()" [(ngModel)]="formValue" (keyup)="delInput($event)" #ipt/>
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName">
+    <!--每次缓存5个选项,减少因数量导致显示迟滞-->
+    <cdk-virtual-scroll-viewport [itemSize]="5" [ngStyle]="{'height':optionHeight+'px'}">
+      <mat-option *ngFor="let list of filteredCondition | async" [value]="list">
+        {{list.name}}
+      </mat-option>
+    </cdk-virtual-scroll-viewport>
+  </mat-autocomplete>
+</form>
+
+<button (click)="show()" id="btn-flash" class="show-flash-btn"></button>
+<button (click)="closePanel()" id="btn-close" [disabled]="closeAble"></button>
+  <input type="text" appSelecterFocus>
+<div style="width: 200px;height: 2000px;background: #aaffaa;clear: both;float: right">div1</div>

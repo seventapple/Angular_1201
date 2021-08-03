@@ -4,12 +4,25 @@
 $sprite: url(./assets/img/icon.jpg);
 $sprite-size: 800px 2000px;
 #btn-flash {
-  width: 35px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
   outline: none;
 }
 
 #btn-flash {
-  background: $sprite -134px -107px/$sprite-size;
+  background: $sprite -661px -855px/$sprite-size;
 }
 
+#btn-close{
+  width: 32px;
+  height: 32px;
+  background-image: $sprite;
+  background-size: $sprite-size;
+  background-position: -74px -551px;
+  background-repeat: no-repeat;
+  outline: none;
+}
+
+#btn-close:disabled{
+  background-position: -661px -855px;
+}

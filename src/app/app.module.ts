@@ -31,6 +31,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ScssStudyComponent } from './app-features/scss-study/scss-study.component';
+import { SelecterFocusDirective } from './selecter-focus.directive';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ScssStudyComponent } from './app-features/scss-study/scss-study.compone
     DateLocalePipe,
     DateLocaleTimezonePipe,
     ScssStudyComponent,
+    SelecterFocusDirective,
   ],
     imports: [
         BrowserAnimationsModule,
