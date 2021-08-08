@@ -26,7 +26,9 @@
 
 <mat-divider></mat-divider>
 <div>
-  事件监听(按键+滚轮)<input type="text" appSelecterFocus>
+  事件监听(按键+滚轮)<input type="text" appSelecterFocus><br>
+  事件监听(input组件blur事件,双向绑定)<input type="text" [(ngModel)]="textValue" trim>value:[{{textValue}}]<br>
+  事件监听(input组件min/max属性,双向绑定)<input type="number" [(ngModel)]="numValue" min="10" max="15" num>value:[{{numValue}}]<br>
 </div>
 <mat-divider></mat-divider>
 <button (click)="closePanel()" id="btn-close"></button>

@@ -24,7 +24,9 @@ export class InputSelectComponent implements OnInit, OnChanges {
   @Input() list: any;
   //下拉框关闭flag
   @Input() optionCloseFlg: boolean;
+  //传入默认值
   @Input() value: any;
+  //返回的选定值
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
   control = new FormControl();
   filteredCondition: Observable<any[]>;
@@ -35,10 +37,16 @@ export class InputSelectComponent implements OnInit, OnChanges {
   //MatAutoComplete 组件 关闭下拉框
   @ViewChild('ipt', {read: MatAutocompleteTrigger}) autoTrigger: MatAutocompleteTrigger;
 
+  //入力提示框
   customPlaceholder: string = 'input ... ';
 
+  //空白无选中值
   emptyOpt = {value: '', name: ''};
 
+  /**
+   * 构造器
+   * @param changeDetectorRef 避免画面加载后值变化,引起的报错
+   */
   constructor(private changeDetectorRef:ChangeDetectorRef) {
   }
 
@@ -67,7 +75,7 @@ export class InputSelectComponent implements OnInit, OnChanges {
       startWith(searchField),
       map(value => this._filter(value))
     );
-    console.error(matchItem)
+    // console.error(matchItem)
     if(matchItem){
       this.control.setValue(matchItem);
     }
@@ -119,6 +127,11 @@ export class InputSelectComponent implements OnInit, OnChanges {
     }
   }
 
+  getSelect(value){
+    console.error('select value:')
+    console.error(value);
+  }
+
   //入力框有效性检查
   inputCheck() {
     if (this.control.value?.name !== undefined) {
@@ -136,14 +149,13 @@ export class InputSelectComponent implements OnInit, OnChanges {
   }
 
   /**
-   *1.显示下拉菜单选择内容 2.反应当前输入框的绝对位置
+   *1.显示当前输入框的绝对位置
    */
   show() {
     console.error('input locale:');
     const iptLocale = this.iptEr.nativeElement.getBoundingClientRect();
     console.error('x:' + iptLocale.x);
     console.error('y:' + iptLocale.y);
-    console.error(this.list)
   }
 
   /**

@@ -31,8 +31,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ScssStudyComponent } from './app-features/scss-study/scss-study.component';
-import { SelecterFocusDirective } from './selecter-focus.directive';
+import { SelecterFocusDirective } from './directive/selecter-focus.directive';
 import { InputSelectComponent } from './app-features/material/input-select/input-select.component';
+import { InputTrimDirective } from './directive/input-trim.directive';
+import { InputNumDirective } from './directive/input-num.directive';
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { InputSelectComponent } from './app-features/material/input-select/input
     ScssStudyComponent,
     SelecterFocusDirective,
     InputSelectComponent,
+    InputTrimDirective,
+    InputNumDirective,
   ],
     imports: [
         BrowserAnimationsModule,

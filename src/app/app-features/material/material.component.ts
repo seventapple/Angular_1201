@@ -27,7 +27,11 @@ export class MaterialComponent implements OnInit {
   index = 0;
   openFlg = true;
 
-  //{'id': 4, name: undefined}
+  //text监听组件值
+  textValue: any;
+  //number监听组件值
+  numValue: any;
+  //auto-material组件显示列表
   list: any[] = [{value: '1', name: 'false'}, {value: '2', name: '0'}, {value: '3', name: ''}];
   selectValue = '4';//默认值
   closeOption = false;
@@ -60,6 +64,8 @@ export class MaterialComponent implements OnInit {
   afterClose() {
     this.openFlg = false;
   }
+
+  //关闭下拉列表
   closePanel() {
     this.closeOption = true;
     setTimeout(() => {
@@ -67,7 +73,8 @@ export class MaterialComponent implements OnInit {
     });
   }
 
-  cleanValue(){
+  //清空下拉列表的值
+  cleanValue() {
     this.selectValue = '';
   }
 }
