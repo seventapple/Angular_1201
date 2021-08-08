@@ -1,0 +1,14 @@
+<div class="example-form">
+  <input type="text" [placeholder]="customPlaceholder" [formControl]="control"
+         [matAutocomplete]="auto" (blur)="inputBlur()" (keyup)="delInput($event)" #ipt/>
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName" (closed)="inputCheck()">
+    <!--每次缓存5个选项,减少因数量过大,加载缓慢而导致显示迟滞-->
+    <cdk-virtual-scroll-viewport [itemSize]="10" [ngStyle]="{'height':optionHeight+'px'}">
+      <mat-option *cdkVirtualFor="let list of filteredCondition | async" [value]="list">
+        {{list.name}}
+      </mat-option>
+    </cdk-virtual-scroll-viewport>
+  </mat-autocomplete>
+</div>
+<button (click)="show()" class="btn">显示坐标</button>
+<button (click)="closePanel()" class="btn">close</button>

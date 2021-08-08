@@ -32,6 +32,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ScssStudyComponent } from './app-features/scss-study/scss-study.component';
 import { SelecterFocusDirective } from './selecter-focus.directive';
+import { InputSelectComponent } from './app-features/material/input-select/input-select.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { SelecterFocusDirective } from './selecter-focus.directive';
     DateLocaleTimezonePipe,
     ScssStudyComponent,
     SelecterFocusDirective,
+    InputSelectComponent,
   ],
     imports: [
         BrowserAnimationsModule,
