@@ -3,7 +3,9 @@
   class="ag-theme-balham"
   [gridOptions]="docOption"
   [rowData]="rowData"
-  [columnDefs]="columnDefs">
+  [columnDefs]="columnDefs"
+  [frameworkComponents]="frameworkCustom"
+  (cellKeyDown)="cellKeyDown($event)">
 </ag-grid-angular>
 ================================搜索====================================
 <br/><input type="text" [(ngModel)]="searchWrd" (keyup)="search()"/>
