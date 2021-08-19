@@ -175,16 +175,19 @@ export class StudyComponent implements OnInit {
     const zip = new JSZip();
     let fileCnt = this.files.length;
     return new Promise((resolve) => {
-      this.files.forEach((file, index) => {
+      // this.files.forEach((file, index) => {
+      let num = 0;
+      this.files.forEach((file) => {
         const filereader = new FileReader();
         filereader.readAsArrayBuffer(file.file);
         filereader.onload = () => {
           const name = this.fileRename(file.fileName, file.cnt);
           zip.file(name, filereader.result);
-          if (index + 1 === fileCnt) {
+          num++;
+          if (fileCnt === num) {
             zip.generateAsync({type: 'blob'}).then(
               content => {
-                console.log('success zip file.');
+                // console.log('success zip file.');
                 resolve(content);
                 // 压缩文件直接保存
                 // saveAs(content, name);
