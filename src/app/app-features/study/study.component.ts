@@ -1,13 +1,14 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as saveAs from 'src/assets/FileSaver';
-import {rejects} from 'assert';
-import {getFileExtension, getFileName} from '../../app.basic-util';
+import { rejects } from 'assert';
+import { getFileExtension, getFileName } from '../../app.basic-util';
 import * as JSZip from 'jszip';
-import {promises} from 'dns';
-import {I18nService} from '../../services/i18n.service';
-import {DialogService} from '../../modules/dialog/dialog.service';
-import {DateService} from '../../services/date.service';
+import { promises } from 'dns';
+import { I18nService } from '../../services/i18n.service';
+import { DialogService } from '../../modules/dialog/dialog.service';
+import { DateService } from '../../services/date.service';
 import * as moment from 'moment';
+import { StudyService } from './study.service';
 
 declare function require(x: string): any;
 
@@ -42,7 +43,8 @@ export class StudyComponent implements OnInit {
 
   constructor(private i18n: I18nService,
               private dialogService: DialogService,
-              private dateService: DateService) {
+              private dateService: DateService,
+              private studyService: StudyService) {
   }
 
   ngOnInit(): void {
@@ -323,6 +325,40 @@ export class StudyComponent implements OnInit {
   removeDiv() {
     console.log('remove div');
     document.getElementById('div_1').style.display = 'none';
+  }
+
+  //get请求
+  getTest() {
+    this.studyService.getTest().subscribe(res => {
+      console.error(res);
+      console.error(res.msg);
+      alert('get Test result : ' + res.msg);
+    });
+  }
+
+  //get请求
+  getTest2() {
+    this.studyService.getNodeTest().subscribe(res => {
+      console.error(res);
+      alert('get Test result : ' + res);
+    });
+  }
+
+  //post请求
+  postTest() {
+    const param = {name: 'wang', age: 30};
+    this.studyService.postNodeTest(param).subscribe(res => {
+      console.error(res);
+      alert('post Test result : ' + res.msg);
+    });
+  }
+
+  postTest2() {
+    const param = {name: 'wang', age: 30};
+    this.studyService.postNodeTest2(param).subscribe(res => {
+      console.error(res);
+      alert('post Test result : ' + res.msg);
+    });
   }
 }
 

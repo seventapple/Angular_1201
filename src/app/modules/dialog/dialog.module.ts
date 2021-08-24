@@ -23,11 +23,12 @@ import { BaseDialogComponent } from './base-dialog/base-dialog.component';
     MatDialogModule,
     TranslateModule,
   ],
-  exports: [
-    DialogHeaderComponent,
-    DialogBodyComponent,
-    DialogFooterComponent
-  ],
+    exports: [
+        DialogHeaderComponent,
+        DialogBodyComponent,
+        DialogFooterComponent,
+        BaseDialogComponent
+    ],
   providers: []
 })
 export class DialogModule {

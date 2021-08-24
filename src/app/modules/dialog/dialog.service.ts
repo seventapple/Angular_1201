@@ -1,9 +1,9 @@
-import {Injectable, TemplateRef} from '@angular/core';
-import {MatDialogRef, MatDialog} from '@angular/material/dialog';
-import {map} from 'rxjs/operators';
-import {Observable} from 'rxjs';
-import {ComponentType} from '@angular/cdk/portal';
-import {ConfirmDialogComponent} from './confirm/confirm-dialog.component';
+import { Injectable, TemplateRef } from '@angular/core';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { ComponentType } from '@angular/cdk/portal';
+import { ConfirmDialogComponent } from './confirm/confirm-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,23 @@ export class DialogService {
   constructor(private dialog: MatDialog) {
   }
 
-  //打开确认Dialog
+  open<T, R>(componentOrTemplateRef: ComponentType<T> | TemplateRef<T>, inoutParams?: any, isDrawer: boolean = false): Observable<R> {
+    let config = {
+      panelClass: 'dialog-panel',
+      data: inoutParams
+    };
+    if (isDrawer) {
+      const drawerConfig = {
+        position: {right: '0px'},
+        hasBackdrop: true,
+        backdropClass: 'drawer-back-drop'
+      };
+      config = {...config, ...drawerConfig};
+    }
+    return this.openWithConfig(componentOrTemplateRef, config, true);
+  }
+
+  // 打开确认Dialog
   confirm(title: string, message: string, msgParams?: any
   ): Observable<boolean> {
     const inoutParams = {title: title, message: message, msgParams: msgParams};
@@ -24,7 +40,7 @@ export class DialogService {
     return this.openWithConfig(ConfirmDialogComponent, config, false);
   }
 
-  //错误提示
+  // 错误提示
   error(title: string, message: string, msgParams?: any
   ): Observable<boolean> {
     const inoutParams = {title: title, message: message, msgParams: msgParams, hideExec: true, cancelName: 'confirm'};
@@ -33,7 +49,7 @@ export class DialogService {
     return this.openWithConfig(ConfirmDialogComponent, config, false);
   }
 
-  //打开指定Dialog
+  // 打开指定Dialog
   openWithConfig<T, R>(componentOrTemplateRef: ComponentType<T> | TemplateRef<T>, config: any, saveRef: boolean): Observable<R> {
     const dialogRef = this.dialog.open(componentOrTemplateRef, config);
     if (!config.disableClose) {
@@ -47,7 +63,13 @@ export class DialogService {
     return dialogRef.afterClosed();
   }
 
-  //关闭制定Dialog
+  close<T>(componentOrTemplateRef: ComponentType<T> | TemplateRef<T>, outputParams?: any) {
+    const dialogRef = this.dialogRefMap.get(componentOrTemplateRef);
+    this.dialogRefMap.delete(componentOrTemplateRef);
+    dialogRef?.close(outputParams);
+  }
+
+  // 关闭制定Dialog
   closeRef<T>(dialogRef: MatDialogRef<any>, outputParams?: any): void {
     this.dialogRefMap.forEach(((value, key, map) => {
       if (dialogRef === value) {
