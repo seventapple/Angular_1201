@@ -1,3 +1,4 @@
+<app-loading></app-loading>
 <div class="study-body">
   <div class="study-part">
     input number型 输入小数时tooltip显示问题<input type="number" [(ngModel)]="intTest" (keyup)="showInt()"/>{{intTest}}
@@ -57,6 +58,7 @@
     <div id="div_1">1</div>
     <div>2</div>
     <button (click)="removeDiv()">remove 1</button>
+    <button (click)="showAndHideLoad()">loading...</button>
   </div>
   <div class="study-part">
     <p>jersey project</p>

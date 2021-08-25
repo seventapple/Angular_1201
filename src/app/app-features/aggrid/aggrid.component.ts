@@ -168,6 +168,7 @@ export class AggridComponent implements OnInit {
 
   // 过滤相似的Form
   filterForm(param) {
+    // param.data[param.colDef.field]当前列当前字段的值的取得
     // console.log(param);
     const form = param.value.substr(7);
     const result = this.formList.filter(entry =>

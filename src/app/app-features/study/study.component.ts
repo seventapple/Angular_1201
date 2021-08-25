@@ -9,6 +9,7 @@ import { DialogService } from '../../modules/dialog/dialog.service';
 import { DateService } from '../../services/date.service';
 import * as moment from 'moment';
 import { StudyService } from './study.service';
+import { LoadingService } from '../../modules/loading/loading.service';
 
 declare function require(x: string): any;
 
@@ -47,7 +48,9 @@ export class StudyComponent implements OnInit {
   constructor(private i18n: I18nService,
               private dialogService: DialogService,
               private dateService: DateService,
-              private studyService: StudyService) {
+              private studyService: StudyService,
+              private loadingService: LoadingService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -230,6 +233,10 @@ export class StudyComponent implements OnInit {
   //文件下载
   download(file) {
     let name = this.downloadName + this.extensionInfo;
+    // java encode函数' '=>'+'的对应
+    // name = name.replace(/\+/g,'%20');
+    // 针对URLencode的字符转码
+    // name = decodeURIComponent(name);
     const blob = new Blob([file], {type: 'applicatin/txt'});
     if (window.navigator.msSaveOrOpenBlob) {
       //Internet Explorer 10
@@ -328,6 +335,12 @@ export class StudyComponent implements OnInit {
   removeDiv() {
     console.log('remove div');
     document.getElementById('div_1').style.display = 'none';
+  }
+
+  //测试读取动画
+  showAndHideLoad(){
+    this.loadingService.showWaiting();
+    setTimeout(()=>{this.loadingService.hideWaiting()},3000);
   }
 
   //get请求
