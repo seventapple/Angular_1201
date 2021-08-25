@@ -1,6 +1,9 @@
 {
+  "/test": {
+    "target": "http://localhost:44908/jerseyTest"
+  },
   "/service": {
-    "targer": "http://localhost:8080/waproject",
+    "target": "http://localhost:8080/waproject",
     "changeOrigin": true,
     "secure": false
   },
@@ -12,4 +15,5 @@
       "^/wa": ""
     }
   }
+
 }

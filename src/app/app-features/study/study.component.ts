@@ -41,6 +41,9 @@ export class StudyComponent implements OnInit {
   //隐藏组件flg
   hiddenFlg: boolean = true;
 
+  //jersey test get
+  urlTest: string;
+
   constructor(private i18n: I18nService,
               private dialogService: DialogService,
               private dateService: DateService,
@@ -329,7 +332,7 @@ export class StudyComponent implements OnInit {
 
   //get请求
   getTest() {
-    this.studyService.getTest().subscribe(res => {
+    this.studyService.getTest(this.urlTest).subscribe(res => {
       console.error(res);
       console.error(res.msg);
       alert('get Test result : ' + res.msg);
