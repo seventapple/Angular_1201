@@ -17,7 +17,7 @@ import { MaterialComponent } from './app-features/material/material.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 // 多语言
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 // get,post和服务器交互
 import { HttpClientModule } from '@angular/common/http';
 import { HttpLoaderFactory, I18nService } from './services/i18n.service';
@@ -38,6 +38,7 @@ import { InputTrimDirective } from './directive/input-trim.directive';
 import { InputNumDirective } from './directive/input-num.directive';
 import { CheckboxComponent } from './modules/checkbox/checkbox.component';
 import { LoadingModule } from './modules/loading/loading.module';
+import { AppInterceptor } from './app.interceptor';
 
 
 @NgModule({
@@ -60,34 +61,40 @@ import { LoadingModule } from './modules/loading/loading.module';
     InputNumDirective,
     CheckboxComponent,
   ],
-    imports: [
-        BrowserAnimationsModule,
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        AgGridModule.withComponents([]),
-        MatExpansionModule,
-        HttpClientModule,
-        // i18n
-        TranslateModule.forRoot(
-            {
-                loader: {
-                    provide: TranslateLoader,
-                    useFactory: HttpLoaderFactory,
-                    deps: [HttpClient]
-                }
-            }
-        ),
-        // Dialog
-        DialogModule,
-        MatDividerModule,
-        ReactiveFormsModule,
-        // input-select
-        MatAutocompleteModule,
-        ScrollingModule,
-        LoadingModule
-    ],
-  providers: [],
+  imports: [
+    BrowserAnimationsModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    AgGridModule.withComponents([]),
+    MatExpansionModule,
+    HttpClientModule,
+    // i18n
+    TranslateModule.forRoot(
+      {
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+        }
+      }
+    ),
+    // Dialog
+    DialogModule,
+    MatDividerModule,
+    ReactiveFormsModule,
+    // input-select
+    MatAutocompleteModule,
+    ScrollingModule,
+    LoadingModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

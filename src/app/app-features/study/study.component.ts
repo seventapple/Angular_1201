@@ -10,6 +10,7 @@ import { DateService } from '../../services/date.service';
 import * as moment from 'moment';
 import { StudyService } from './study.service';
 import { LoadingService } from '../../modules/loading/loading.service';
+import { HttpService } from '../../services/http.service';
 
 declare function require(x: string): any;
 
@@ -43,13 +44,14 @@ export class StudyComponent implements OnInit {
   hiddenFlg: boolean = true;
 
   //jersey test get
-  urlTest: string;
+  urlTest = 'test/get';
 
   constructor(private i18n: I18nService,
               private dialogService: DialogService,
               private dateService: DateService,
               private studyService: StudyService,
               private loadingService: LoadingService,
+              private httpService: HttpService,
   ) {
   }
 
@@ -348,7 +350,6 @@ export class StudyComponent implements OnInit {
     this.studyService.getTest(this.urlTest).subscribe(res => {
       console.error(res);
       console.error(res.msg);
-      alert('get Test result : ' + res.msg);
     });
   }
 
@@ -375,6 +376,11 @@ export class StudyComponent implements OnInit {
       console.error(res);
       alert('post Test result : ' + res.msg);
     });
+  }
+
+  //跳转至首页,通过location.replace()
+  jumpToHome(){
+    this.httpService.forwardToHome();
   }
 }
 

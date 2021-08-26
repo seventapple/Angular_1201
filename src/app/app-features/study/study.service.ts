@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 export class StudyService {
 
   //request to jersey project
-  getRequestTestUrl = 'http://localhost:8080/jt/test/get/123';
+  // getRequestTestUrl = 'http://localhost:8080/jt/test/get/123';
 
   // request to node.js project(E:\TestFile\node_project\forRequest\nodejs_serve)
   getNodeTestUrl = 'http://127.0.0.1:3000';
@@ -20,10 +20,10 @@ export class StudyService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(public http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getTest(): Observable<any>{
-    return this.http.get(this.getRequestTestUrl);
+  getTest(url): Observable<any>{
+    return this.http.get(url);
   }
 
   getNodeTest(): Observable<any>{
