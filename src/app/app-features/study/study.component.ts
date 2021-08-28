@@ -340,16 +340,22 @@ export class StudyComponent implements OnInit {
   }
 
   //测试读取动画
-  showAndHideLoad(){
+  showAndHideLoad() {
     this.loadingService.showWaiting();
-    setTimeout(()=>{this.loadingService.hideWaiting()},3000);
+    setTimeout(() => {
+      this.loadingService.hideWaiting();
+    }, 3000);
   }
 
   //get请求
   getTest() {
     this.studyService.getTest(this.urlTest).subscribe(res => {
-      console.error(res);
-      console.error(res.msg);
+      if (this.urlTest === 'test/get') {
+        console.error(res.body);
+      } else {
+        console.error(res);
+        console.error(res.msg);
+      }
     });
   }
 
@@ -379,7 +385,7 @@ export class StudyComponent implements OnInit {
   }
 
   //跳转至首页,通过location.replace()
-  jumpToHome(){
+  jumpToHome() {
     this.httpService.forwardToHome();
   }
 }
