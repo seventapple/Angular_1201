@@ -4,6 +4,15 @@
   list-style: none;
 }
 
+.div-os{
+  height: 50px;
+  width: 50px;
+  background-color: #aaffaa;
+  @supports (-webkit-touch-callout: none) {
+    float: right;
+}
+}
+
 .li-block {
   float: left;
 }
