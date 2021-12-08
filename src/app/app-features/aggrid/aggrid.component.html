@@ -20,3 +20,19 @@
   (cellClicked)="onCellClicekd($event)"
   (selectionChanged)="onSelectionChanged($event)">
 </ag-grid-angular>
+================================checkbox====================================
+<ag-grid-angular
+  style="width: 810px; height: 260px;"
+  class="ag-theme-balham"
+  (gridSizeChanged)="onResize()"
+  (rowDataChanged)="onReady()"
+  (selectionChanged)="fileSelected()"
+  [columnDefs]="columnDefs"
+  [gridOptions]="fileGridOptions"
+  [rowData]="boxData"
+  overlayLoadingTemplate="<span></span>"
+  overlayNoRowsTemplate="<span></span>"
+  rowMultiSelectWithClick="true"
+  rowSelection="multiple"
+  suppressDragLeaveHidesColumns="true">
+</ag-grid-angular>

@@ -70,4 +70,7 @@
     <button (click)="postTest2()">post test and filter result</button>
     <button (click)="jumpToHome()">jump to home</button>
   </div>
+  <div class="study-part">
+    <input #inputFile type="file" [(ngModel)]="selectedFile" (change)="selectFile($event)" accept="{{limitFile}}">{{selectedFile?.name}}
+  </div>
 </div>

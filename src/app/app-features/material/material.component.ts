@@ -3,6 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { DialogService } from '../../modules/dialog/dialog.service';
+import { InputSelectComponent } from './input-select/input-select.component';
 
 @Component({
   selector: 'app-material',
@@ -36,7 +38,7 @@ export class MaterialComponent implements OnInit {
   selectValue = '4';//默认值
   closeOption = false;
 
-  constructor() {
+  constructor(private dialogService: DialogService) {
   }
 
   ngOnInit(): void {
@@ -65,16 +67,21 @@ export class MaterialComponent implements OnInit {
     this.openFlg = false;
   }
 
+  openSelect() {
+    const param ={defValue:this.selectValue,list:this.list}
+    this.dialogService.open(InputSelectComponent, param).subscribe(res=>{
+      if(res){
+        const reslut: any = res;
+        this.selectValue = reslut.value;
+      }
+    });
+  }
+
   //关闭下拉列表
   closePanel() {
     this.closeOption = true;
     setTimeout(() => {
       this.closeOption = false;
     });
-  }
-
-  //清空下拉列表的值
-  cleanValue() {
-    this.selectValue = '';
   }
 }

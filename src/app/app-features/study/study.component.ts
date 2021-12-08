@@ -46,6 +46,14 @@ export class StudyComponent implements OnInit {
   //jersey test get
   urlTest = 'test/get';
 
+  //文件选择限制类型参数'.pdf,.csv'
+  limitFile = '.pdf,.csv';
+
+  //选择文件名
+  selectedFileName: string;
+//选择文件
+  selectedFile:any;
+
   constructor(private i18n: I18nService,
               private dialogService: DialogService,
               private dateService: DateService,
@@ -387,6 +395,20 @@ export class StudyComponent implements OnInit {
   //跳转至首页,通过location.replace()
   jumpToHome() {
     this.httpService.forwardToHome();
+  }
+  @ViewChild('inputFile') uploadFile:any
+  selectFile(event) {
+    const files = event.target.files;
+    if (files.length) {
+      this.selectedFile=files[0];
+      console.error('get file.');
+      console.error(this.selectedFile);
+      //清空选择文件,选定同一个文件可以触发change事件
+      if(this.selectedFile.name.endsWith('.txt')){
+        this.selectedFile=null;
+        this.uploadFile.nativeElement.value='';
+      }
+    }
   }
 }
 

@@ -30,6 +30,12 @@ export class AggridComponent implements OnInit {
   // 表格变checkbox
   frameworkCustom: any;
 
+  //----------------------------
+  //
+  fileGridOptions: GridOptions;
+  boxData = [];
+  leftData = [];
+
   constructor() {
   }
 
@@ -105,6 +111,10 @@ export class AggridComponent implements OnInit {
     this.frameworkCustom = {
       checkBoxRender: CheckboxComponent
     };
+    //for box
+    this.fileGridOptions = {} as GridOptions;
+    this._createColumnDefs();
+    this.boxData = ['1.txt', '2.txt', '3.txt', '4.txt'];
   }
 
   // 监听表格中按键事件
@@ -194,5 +204,46 @@ export class AggridComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  _createColumnDefs() {
+    this.columnDefs = [
+      {
+        headerName: '',
+        colId: 'checkbox',
+        headerCheckboxSelection: true,
+        checkboxSelection: true,
+        width: 40,
+        minWidth: 40,
+        maxWidth: 40,
+        headerClass: 'pointer-cursor',
+        suppressMovable: true,
+        resizable: false,
+        menuTabs: []
+      },
+      {
+        headerName: '文件名',
+        width: 300,
+        minWidth: 50,
+        headerClass: 'pointer-cursor',
+        valueGetter: params => params.data
+      }
+    ];
+    this.fileGridOptions.defaultColDef = {resizable: true, sortable: true, filter: false};
+  }
+
+  onResize() {
+    this.fileGridOptions.api.sizeColumnsToFit();
+  }
+
+  onReady() {
+    this.onResize();
+  }
+
+  fileSelected() {
+    const selected = this.fileGridOptions.api.getSelectedRows();
+    console.error('select:' + selected);
+    this.leftData = this.boxData.filter(item=>selected.indexOf(item)===-1);
+    console.error('left:'+this.leftData)
   }
 }

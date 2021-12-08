@@ -31,8 +31,5 @@
   事件监听(input组件min/max属性,双向绑定)<input type="number" [(ngModel)]="numValue" min="10" max="15" num>value:[{{numValue}}]<br>
 </div>
 <mat-divider></mat-divider>
-<button (click)="closePanel()" id="btn-close"></button>
-<!--入力组件,根据字符匹配选项,不合规则的,恢复空-->
-<app-input-select [list]="list" [(value)]="selectValue" [optionCloseFlg]="closeOption"></app-input-select>
-<div style="float: left;display: block">选择值为:{{selectValue}}</div>
-<button style="float: left;display: block" (click)="cleanValue()">清除值</button>
+默认值:<input type="text" [(ngModel)]="selectValue"><button (click)="openSelect()">Do</button>
+

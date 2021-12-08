@@ -13,3 +13,17 @@
   height:  20px !important;
   padding: 0 8px !important;
 }
+.content {
+  position: fixed;
+  z-index: 1300;
+  width: 40%;
+  height: calc(70vh);
+  height: -webkit-calc(70vh);
+  height: -moz-calc(70vh);
+  left: calc(40vh);
+  top: calc(40vh);
+}
+
+.mat-oprion-search{
+  width: 180px;
+}

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start-host": "ng serve --proxy-config proxy.config.json --host 127.0.0.1 --port 4201",
+    "start-host": "ng serve --proxy-config proxy.config.json --host 10.0.0.2 --port 12341",
     "start-host2": "ng serve --port 4201 --proxy-config proxy.config.json",
     "build": "ng build",
     "test": "ng test",

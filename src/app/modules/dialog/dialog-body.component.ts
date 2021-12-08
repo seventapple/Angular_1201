@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'dialog-body',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogBodyComponent implements OnInit {
 
+  @Output() executeScroll : EventEmitter<any> = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  scroll(){
+    this.executeScroll.emit();
   }
 
 }

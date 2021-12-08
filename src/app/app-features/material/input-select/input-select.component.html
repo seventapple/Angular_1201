@@ -1,14 +1,22 @@
-<div class="example-form">
-  <input type="text" [placeholder]="customPlaceholder" [formControl]="control"
-         [matAutocomplete]="auto" (blur)="inputBlur()" (keyup)="delInput($event)" #ipt/>
-  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName" (closed)="inputCheck()" (optionSelected)="getSelect($event.option.value)">
-    <!--每次缓存5个选项,减少因数量过大,加载缓慢而导致显示迟滞-->
-    <cdk-virtual-scroll-viewport [itemSize]="10" [ngStyle]="{'height':optionHeight+'px'}">
-      <mat-option *cdkVirtualFor="let list of filteredCondition | async" [value]="list">
-        {{list.name}}
-      </mat-option>
-    </cdk-virtual-scroll-viewport>
-  </mat-autocomplete>
+<base-dialog></base-dialog>
+<div class="content">
+  <dialog-header [dialogTitle]="title"></dialog-header>
+  <dialog-body (executeScroll)="closePanel()" style="height: 60px">
+    <div class="example-form">
+      <label>
+      <input type="text" [formControl]="control" (focus)="optionRefresh()"
+             [matAutocomplete]="auto" (keyup)="delInput($event)" #ipt/></label>
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName" (optionSelected)="selectOptCheck()">
+        <!--每次缓存5个选项,减少因数量过大,加载缓慢而导致显示迟滞-->
+        <cdk-virtual-scroll-viewport [itemSize]="10" [ngStyle]="{'height':optionHeight+'px'}" #autocomplete>
+          <mat-option *cdkVirtualFor="let list of filteredCondition | async" [value]="list" class="mat-oprion-search">
+            {{list.name}}
+          </mat-option>
+        </cdk-virtual-scroll-viewport>
+      </mat-autocomplete>
+    </div>
+    <button (click)="show()" class="btn">显示坐标</button>
+    <button (click)="clean()" class="btn">清空值</button>
+  </dialog-body>
+<dialog-footer [hideExec]="false" (execute)="doSave()"></dialog-footer>
 </div>
-<button (click)="show()" class="btn">显示坐标</button>
-<button (click)="closePanel()" class="btn">close</button>
